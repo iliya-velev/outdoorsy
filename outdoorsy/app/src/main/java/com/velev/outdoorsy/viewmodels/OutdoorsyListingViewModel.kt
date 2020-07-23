@@ -17,5 +17,12 @@ class OutdoorsyListingViewModel(private val keywordsComposerUseCase: KeywordsCom
 
     fun observeVehicles() = observeVehiclesUseCase()
 
-    fun loadVehicles() = loadVehiclesUseCase()
+    fun loadVehicles(keyWordsString: String? = null) {
+        if (keyWordsString.isNullOrEmpty()) {
+            loadVehiclesUseCase()
+        } else {
+            val keyWordsComposedString = keywordsComposerUseCase(keyWordsString)
+            loadVehiclesByKeywordsUseCase(keyWordsComposedString)
+        }
+    }
 }
