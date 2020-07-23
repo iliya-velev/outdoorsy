@@ -10,14 +10,29 @@ import com.velev.outdoorsy.datasource.remote.VehicleRemoteSource
  * @author Iliya Velev
  * @since 1.0
  */
-class VehicleRepositoryImpl(private val localSource: VehicleLocalSource,
-                            private val remoteSource: VehicleRemoteSource) : VehicleRepository {
+class VehicleRepositoryImpl private constructor(
+    private val localSource: VehicleLocalSource,
+    private val remoteSource: VehicleRemoteSource
+) : VehicleRepository {
+
+    companion object {
+        private var INSTANCE: VehicleRepositoryImpl? = null
+        fun getInstance(
+            localSource: VehicleLocalSource,
+            remoteSource: VehicleRemoteSource
+        ): VehicleRepositoryImpl {
+            if (INSTANCE == null) {
+                INSTANCE = VehicleRepositoryImpl(localSource, remoteSource)
+            }
+            return INSTANCE!!
+        }
+    }
 
     override fun observeVehicles(): LiveData<ResultData<List<Vehicle>>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return  localSource.observeVehicles()
     }
 
     override fun loadVehicles(kyeWords: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
