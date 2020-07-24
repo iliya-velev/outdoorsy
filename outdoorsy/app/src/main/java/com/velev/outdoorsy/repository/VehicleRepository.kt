@@ -10,5 +10,5 @@ import com.velev.outdoorsy.data.Vehicle
  */
 interface VehicleRepository {
     fun observeVehicles() : LiveData<ResultData<List<Vehicle>>>
-    fun loadVehicles(kyeWords: String? = null)
+    fun loadVehicles(kyeWords: String = "")
 }

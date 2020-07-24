@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorGreyBackground"
     android:orientation="vertical">
 
     <FrameLayout
@@ -23,6 +24,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vehicle_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

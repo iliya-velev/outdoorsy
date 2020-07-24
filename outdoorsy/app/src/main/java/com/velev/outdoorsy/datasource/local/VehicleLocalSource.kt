@@ -11,4 +11,6 @@ import com.velev.outdoorsy.data.Vehicle
 interface VehicleLocalSource {
 
     fun observeVehicles() : LiveData<ResultData<List<Vehicle>>>
+
+    fun updateData(data: List<Vehicle>)
 }

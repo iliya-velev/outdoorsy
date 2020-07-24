@@ -11,10 +11,18 @@ import com.velev.outdoorsy.data.Vehicle
  */
 class VehicleLocalSourceImpl : VehicleLocalSource {
 
+    private val data = ArrayList<Vehicle>()
+
     private val vehicleState = MutableLiveData<ResultData<List<Vehicle>>>()
         .apply {
             value = ResultData.None
         }
 
     override fun observeVehicles() = vehicleState as LiveData<ResultData<List<Vehicle>>>
+
+    override fun updateData(data: List<Vehicle>) {
+        this.data.clear()
+        this.data.addAll(data)
+        vehicleState.postValue(ResultData.Success(this.data))
+    }
 }
